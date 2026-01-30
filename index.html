@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Biskra CS Student Helper – S3/S4</title>
+</head>
+
+<body>
+    <footer class="footer">
+        <div class="footerInner">
+            <div class="footerCard">
+                <div>Made by Abderrazak Achour</div>
+
+                <a class="iconLink" href="https://github.com/abderazak-py/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Open GitHub profile">
+                    <!-- GitHub icon (inline SVG) -->
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 .5C5.73.5.75 5.62.75 12c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.26.79-.57v-2.1c-3.2.72-3.87-1.59-3.87-1.59-.53-1.37-1.3-1.74-1.3-1.74-1.06-.74.08-.73.08-.73 1.17.08 1.79 1.23 1.79 1.23 1.04 1.82 2.73 1.29 3.4.99.11-.77.41-1.29.74-1.59-2.56-.3-5.26-1.31-5.26-5.83 0-1.29.45-2.35 1.2-3.18-.12-.3-.52-1.53.11-3.2 0 0 .98-.32 3.2 1.22a10.8 10.8 0 0 1 2.91-.4c.99 0 1.99.14 2.91.4 2.22-1.54 3.2-1.22 3.2-1.22.63 1.67.23 2.9.11 3.2.75.83 1.2 1.89 1.2 3.18 0 4.53-2.71 5.53-5.29 5.82.42.37.8 1.1.8 2.22v3.29c0 .31.21.68.8.57A11.27 11.27 0 0 0 23.25 12C23.25 5.62 18.27.5 12 .5z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <h1 id="brandTitle">Biskra CS Student Helper</h1>
+                <span class="tag" id="brandTag">S3/S4 averages • DZ</span>
+            </div>
+
+            <div class="pill">
+                <span>Range</span>
+                <strong style="color:var(--text)">0 → 20</strong>
+                <span style="opacity:.6">•</span>
+                <span>Pass</span>
+                <strong class="pass">≥ 10</strong>
+            </div>
+        </header>
+
+        <!-- HOME -->
+        <section class="page active" id="page_home">
+            <div class="homeBtns">
+                <a class="homeBtn" href="#s1">
+                    <div>
+                        <div class="t">S1 Calculator</div>
+                        <div class="d">Start strong: compute your first‑year baseline and see where your effort pays off
+                            most.</div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+
+                <a class="homeBtn" href="#s2">
+                    <div>
+                        <div class="t">S2 Calculator</div>
+                        <div class="d">Lock in the foundations: track progress, spot weak modules early, and balance
+                            your workload.</div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+
+                <a class="homeBtn" href="#s3">
+                    <div>
+                        <div class="t">S3 Calculator</div>
+                        <div class="d">Core CS begins here: enter marks, get the weighted average, and review each
+                            module result.</div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+
+                <a class="homeBtn" href="#s4">
+                    <div>
+                        <div class="t">S4 Calculator</div>
+                        <div class="d">Build momentum: same calculator model as S3, tailored to the S4 module list.
+                        </div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+
+                <a class="homeBtn" href="#s5">
+                    <div>
+                        <div class="t">S5 Calculator</div>
+                        <div class="d">Specialize smarter: include your choice modules and see how they affect your
+                            overall average.</div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+
+                <a class="homeBtn" href="#s6">
+                    <div>
+                        <div class="t">S6 Calculator</div>
+                        <div class="d">Final stretch: estimate your semester average, including the project, and finish
+                            with confidence.</div>
+                    </div>
+                    <div class="go">Open →</div>
+                </a>
+            </div>
+        </section>
+
+
+
+        <!-- S3 -->
+        <section class="page" id="page_s3">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s3" class="warn"></div>
+                        <div class="modules" id="modules_s3"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s3">Calculate</button>
+                            <button id="btnExample_s3" class="secondary">Fill example</button>
+                            <button id="btnReset_s3" class="secondary">Reset</button>
+                            <button id="btnHome_s3" class="secondary">Home</button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S3 average</div>
+                            <div class="big" id="avg_s3">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s3" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s3" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s3">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s3"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- S4 -->
+        <section class="page" id="page_s4">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s4" class="warn"></div>
+                        <div class="modules" id="modules_s4"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s4">Calculate</button>
+                            <button id="btnExample_s4" class="secondary">Fill example</button>
+                            <button id="btnReset_s4" class="secondary">Reset</button>
+                            <button id="btnHome_s4" class="secondary">Home</button>
+                        </div>
+
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S4 average</div>
+                            <div class="big" id="avg_s4">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s4" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s4" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s4">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s4"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- S1 -->
+        <section class="page" id="page_s1">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s1" class="warn"></div>
+                        <div class="modules" id="modules_s1"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s1">Calculate</button>
+                            <button id="btnExample_s1" class="secondary">Fill example</button>
+                            <button id="btnReset_s1" class="secondary">Reset</button>
+                            <button id="btnHome_s1" class="secondary">Home</button>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S1 average</div>
+                            <div class="big" id="avg_s1">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s1" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s1" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s1">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s1"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- S2 -->
+        <section class="page" id="page_s2">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s2" class="warn"></div>
+                        <div class="modules" id="modules_s2"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s2">Calculate</button>
+                            <button id="btnExample_s2" class="secondary">Fill example</button>
+                            <button id="btnReset_s2" class="secondary">Reset</button>
+                            <button id="btnHome_s2" class="secondary">Home</button>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S2 average</div>
+                            <div class="big" id="avg_s2">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s2" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s2" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s2">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s2"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- S5 -->
+        <section class="page" id="page_s5">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s5" class="warn"></div>
+                        <div class="modules" id="modules_s5"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s5">Calculate</button>
+                            <button id="btnExample_s5" class="secondary">Fill example</button>
+                            <button id="btnReset_s5" class="secondary">Reset</button>
+                            <button id="btnHome_s5" class="secondary">Home</button>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S5 average</div>
+                            <div class="big" id="avg_s5">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s5" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s5" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s5">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s5"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- S6 -->
+        <section class="page" id="page_s6">
+            <div class="grid">
+                <section class="card">
+                    <div class="hd">
+                        <div class="h">Marks</div>
+                        <div class="badge">Coefficients fixed</div>
+                    </div>
+                    <div class="bd">
+                        <div id="warn_s6" class="warn"></div>
+                        <div class="modules" id="modules_s6"></div>
+
+                        <div class="actions">
+                            <button id="btnCalc_s6">Calculate</button>
+                            <button id="btnExample_s6" class="secondary">Fill example</button>
+                            <button id="btnReset_s6" class="secondary">Reset</button>
+                            <button id="btnHome_s6" class="secondary">Home</button>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="card side">
+                    <div class="hd">
+                        <div class="h">Result</div>
+                        <div class="badge">Weighted average</div>
+                    </div>
+                    <div class="bd">
+                        <div class="stat">
+                            <div class="sub">S6 average</div>
+                            <div class="big" id="avg_s6">—</div>
+                            <div class="kpi">
+                                <span>Status</span>
+                                <strong id="status_s6" class="sub">—</strong>
+                            </div>
+                            <div class="kpi">
+                                <span>Total coef</span>
+                                <strong id="sumCoef_s6" class="sub">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat">
+                            <div class="sub">Module marks</div>
+                            <table class="table" id="table_s6">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Mark</th>
+                                        <th>Coef</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_s6"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="./app.js" defer></script>
+</body>
+
+</html>
