@@ -1,108 +1,49 @@
-const CACHE = "biskra-cs-v4";
+const CACHE = "biskra-cs-v6";
 
 const ASSETS = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/app.js",
-  "/manifest.json",
-  "/icon.png",
-  "/icon-192.png",
-  "/icon-512.png"
+  "https://biskra-cs-student-helper.vercel.app/",
+  "https://biskra-cs-student-helper.vercel.app/index.html",
+  "https://biskra-cs-student-helper.vercel.app/style.css",
+  "https://biskra-cs-student-helper.vercel.app/app.js",
+  "https://biskra-cs-student-helper.vercel.app/manifest.json",
+  "https://biskra-cs-student-helper.vercel.app/icon.png",
+  "https://biskra-cs-student-helper.vercel.app/icon-192.png",
+  "https://biskra-cs-student-helper.vercel.app/icon-512.png"
 ];
 
-// Install - cache all assets
+// Install
 self.addEventListener("install", event => {
-  console.log("[SW] Installing service worker...");
   event.waitUntil(
     caches.open(CACHE)
-      .then(cache => {
-        console.log("[SW] Caching all assets");
-        return cache.addAll(ASSETS);
-      })
-      .then(() => {
-        console.log("[SW] All assets cached successfully");
-        return self.skipWaiting();
-      })
-      .catch(err => {
-        console.error("[SW] Cache failed:", err);
-      })
+      .then(cache => cache.addAll(ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
-// Activate - clean old caches
+// Activate
 self.addEventListener("activate", event => {
-  console.log("[SW] Activating service worker...");
   event.waitUntil(
     caches.keys()
-      .then(keys => {
-        return Promise.all(
-          keys.map(key => {
-            if (key !== CACHE) {
-              console.log("[SW] Deleting old cache:", key);
-              return caches.delete(key);
-            }
-          })
-        );
-      })
-      .then(() => {
-        console.log("[SW] Service worker activated");
-        return self.clients.claim();
-      })
+      .then(keys => Promise.all(
+        keys.map(key => key !== CACHE ? caches.delete(key) : null)
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch - serve from cache, fallback to network
+// Fetch
 self.addEventListener("fetch", event => {
-  const { request } = event;
-  
-  // For navigation requests (page loads)
-  if (request.mode === "navigate") {
-    event.respondWith(
-      caches.match("/index.html")
-        .then(response => {
-          if (response) {
-            console.log("[SW] Serving /index.html from cache");
-            return response;
-          }
-          console.log("[SW] Fetching /index.html from network");
-          return fetch(request);
-        })
-        .catch(err => {
-          console.error("[SW] Failed to serve navigation:", err);
-          // Return cached index.html even on error
-          return caches.match("/index.html");
-        })
-    );
-    return;
-  }
-
-  // For all other requests (CSS, JS, images, etc.)
   event.respondWith(
-    caches.match(request)
+    caches.match(event.request)
       .then(response => {
         if (response) {
-          console.log("[SW] Serving from cache:", request.url);
           return response;
         }
-        
-        console.log("[SW] Fetching from network:", request.url);
-        return fetch(request)
-          .then(networkResponse => {
-            // Cache successful network responses
-            if (networkResponse && networkResponse.status === 200) {
-              const responseClone = networkResponse.clone();
-              caches.open(CACHE).then(cache => {
-                cache.put(request, responseClone);
-              });
-            }
-            return networkResponse;
-          })
-          .catch(err => {
-            console.error("[SW] Fetch failed:", request.url, err);
-            // Return undefined if not in cache and network fails
-            return undefined;
-          });
+        return fetch(event.request).catch(() => {
+          if (event.request.mode === 'navigate') {
+            return caches.match('https://biskra-cs-student-helper.vercel.app/index.html');
+          }
+        });
       })
   );
 });
