@@ -13,9 +13,21 @@
 
 
 
-document.getElementById('mode').addEventListener('click', () => {
-  document.body.classList.toggle('light');
+const modeBtn = document.getElementById('mode');
+
+function applyTheme(theme) {
+    document.body.classList.toggle('light', theme === 'light');
+    localStorage.setItem('theme', theme);
+}
+
+const saved = localStorage.getItem('theme');
+if (saved === 'light' || saved === 'dark') applyTheme(saved);
+
+modeBtn.addEventListener('click', () => {
+    const next = document.body.classList.contains('light') ? 'dark' : 'light';
+    applyTheme(next);
 });
+
 
 
 /* =========================
