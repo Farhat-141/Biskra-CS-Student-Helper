@@ -51,67 +51,6 @@ biskra-cs-helper/
 └── icon-512.png       # Large icon (512x512)
 ```
 
-## 🌐 Deployment Instructions
-
-### Option 1: GitHub Pages (Recommended)
-
-1. **Create a GitHub repository**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit - PWA ready"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/biskra-cs-helper.git
-   git push -u origin main
-   ```
-
-2. **Enable GitHub Pages**
-   - Go to repository Settings → Pages
-   - Source: Deploy from branch
-   - Branch: main / (root)
-   - Save
-
-3. **Access your app**
-   - URL: `https://YOUR_USERNAME.github.io/biskra-cs-helper/`
-
-### Option 2: Netlify
-
-1. **Deploy via Drag & Drop**
-   - Go to [Netlify Drop](https://app.netlify.com/drop)
-   - Drag your project folder
-   - Get instant URL
-
-2. **Deploy via Git**
-   ```bash
-   # Install Netlify CLI
-   npm install -g netlify-cli
-   
-   # Deploy
-   netlify deploy --prod
-   ```
-
-### Option 3: Vercel
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel
-```
-
-### Option 4: Local Testing
-
-For local testing with HTTPS (required for Service Workers):
-
-```bash
-# Using Python 3
-python3 -m http.server 8000
-
-# Or using Node.js with http-server
-npx http-server -p 8000
-```
-
 **Note**: Service Workers require HTTPS in production. Only `localhost` works with HTTP.
 
 ## 📱 Installing the PWA
